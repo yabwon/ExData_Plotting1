@@ -62,7 +62,7 @@ str(data.set)
 summary(data.set)
 
 # open device
-png(filename = "plot1.png"
+png(filename = "plot3.png"
     , width = 480
     , height = 480
     , units = "px"
@@ -70,12 +70,27 @@ png(filename = "plot1.png"
     , bg = "transparent"
 )
 # create plot
-hist(data.set[, Global_active_power]
-     , col = "red"
-     , border = "black"
-     , main = "Global Active Power"
-     , xlab = "Global Active Power (kilowatts)"
-     , ylim = range(c(0,1200))
-     )
+plot(data.set[, time.stamp]
+, data.set[, Sub_metering_1]
+, col = 'black'
+, type = "l"
+, main = ""
+, xlab = ""
+, ylab = "Energy sub metering"
+)
+lines(data.set[, time.stamp]
+, data.set[, Sub_metering_2]
+, col = 'red'
+)
+lines(data.set[, time.stamp]
+, data.set[, Sub_metering_3]
+, col = 'blue'
+)
+legend("topright"
+, lty = 1
+, col = c("black", "red", "blue")
+, legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
+, bty = "n"
+)
 # close device
 dev.off()
